@@ -1,16 +1,13 @@
 from crewai import Agent
 from langchain_groq import ChatGroq
+from llms import LLMs
 
-llm_llama70b=ChatGroq(model_name="llama3-70b-8192")
-llm_llama8b=ChatGroq(model_name="llama3-8b-8192")
-llm_gemma2=ChatGroq(model_name="gemma2-9b-it")
-llm_mixtral = ChatGroq(model_name="mixtral-8x7b-32768")
 
 class BlogArticleAgents():
 
     def planner(self):
         return Agent(
-            llm=llm_llama70b,
+            llm=LLMs.llama70b,
             role="Content Planner",
             goal="Plan engaging and factually accurate content on {topic}",
             backstory="You're working on planning a blog article "
@@ -26,7 +23,7 @@ class BlogArticleAgents():
     
     def writer(self):
         return Agent(
-            llm=llm_llama8b,
+            llm=LLMs.llama8b,
             role="Content Writer",
             goal="Write insightful and factually accurate "
                 "opinion piece about the topic: {topic}",
@@ -50,7 +47,7 @@ class BlogArticleAgents():
 
     def editor(self):
         return Agent(
-            llm=llm_gemma2,
+            llm=LLMs.gemma2,
             role="Editor",
             goal="Edit a given blog post to align with "
                 "the writing style of the organization. ",
