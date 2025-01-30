@@ -1,0 +1,2 @@
+langchain_groq==0.1.6
+crewai==0.41.1
